@@ -1,35 +1,63 @@
 import { Link } from "react-router-dom";
 
 function StockTable({ stocks }) {
+  //main table styles//
+
+  const tableStyle = {
+    width: "100%",
+    borderCollapse: "collapse",
+    fontFamily: "arial, sans-serif"
+  };
+// table header (th)styles
+  const thStyle = {
+    padding: "12px",
+    backgroundColor: "black",
+    color: "white",
+    border: "1px solid white",
+    textAlign: "left"
+  };
+// table data(td)styles//
+  const tdStyle = {
+    padding: "10px",
+    border: "1px solid white"
+  };
+//link / price styles//
+  const linkStyle = {
+    color: "blue",
+    fontWeight: "600",
+    textDecoration: "none"
+  };
 
   return (
-    <table border="1">
+    <table border="1" style={tableStyle}>
       <thead>
         <tr>
-          <th>Ticker</th>
-          <th>Company</th>
-          <th>Price</th>
-          <th>Change %</th>
-          <th>Volume</th>
+          <th style={thStyle}>Ticker</th>
+          <th style={thStyle}>Company</th>
+          <th style={thStyle}>Price</th>
+          <th style={thStyle}>Change %</th>
+          <th style={thStyle}>Volume</th>
         </tr>
       </thead>
 
       <tbody>
         {stocks.map(stock => (
           <tr key={stock.ticker}>
-            <td>
-              <Link to={`/stock/${stock.ticker}`}>
+            <td style={tdStyle}>
+              <Link
+                to={`/stock/${stock.ticker}`}   
+                style={linkStyle}
+              >
                 {stock.ticker}
               </Link>
             </td>
-            <td>{stock.company}</td>
-            <td>{stock.price}</td>
-            <td>{stock.change}</td>
-            <td>{stock.volume}</td>
+            <td style={tdStyle}>{stock.company}</td>
+            <td style={tdStyle}>{stock.price}</td>
+            <td style={tdStyle}>{stock.change}</td>
+            <td style={tdStyle}>{stock.volume}</td>
           </tr>
         ))}
       </tbody>
-
     </table>
   );
 }
